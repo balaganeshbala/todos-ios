@@ -55,13 +55,13 @@ struct EmptyListView: View {
             
             Image(systemName: "exclamationmark.circle")
                 .resizable()
-                .foregroundColor(Color.black.opacity(0.3))
+                .foregroundColor(Color("TextColor").opacity(0.4))
                 .frame(width: 60, height: 60)
             
             
             Text("List is Empty")
                 .font(.title)
-                .foregroundColor(Color.black.opacity(0.3))
+                .foregroundColor(Color("TextColor").opacity(0.4))
                 .frame(maxWidth: .infinity)
             
             Spacer()
