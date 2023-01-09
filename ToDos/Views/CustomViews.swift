@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+enum FontWeight: String {
+    case bold = "Bold"
+    case light = "Light"
+    case medium = "Medium"
+    case regular = "Regular"
+    case semibold = "SemiBold"
+}
+
+func getFont(weight: FontWeight, size: CGFloat) -> Font {
+    Font.custom("Quicksand-" + weight.rawValue, size: size)
+}
+
 struct CustomPrimaryButton: ViewModifier {
     
     private let themeColor: LinearGradient = LinearGradient(colors: [.pink, .red], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -16,7 +28,7 @@ struct CustomPrimaryButton: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
-            .font(.system(size: 17.0))
+            .font(getFont(weight: .medium, size: UIFont.buttonFontSize))
             .padding(.vertical, 12.0)
             .background(themeColor)
             .foregroundColor(Color.white)
@@ -33,7 +45,7 @@ struct CustomSecondaryButton: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
-            .font(.system(size: 17.0))
+            .font(getFont(weight: .medium, size: UIFont.buttonFontSize))
             .padding(.vertical, 12.0)
             .background(Color.clear)
             .foregroundColor(Color.pink)
@@ -85,7 +97,7 @@ struct CheckmarkView: View {
             } else {
                 Image(systemName: "circle")
                     .resizable()
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(Color(red: 0.3, green: 0.3, blue: 0.3))
             }
         }
         .frame(width: 20, height: 20)

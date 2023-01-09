@@ -36,11 +36,10 @@ struct UpdateItemView: View {
                 VStack(spacing: 20.0) {
                     
                     Text("Edit Task")
-                        .font(.title2)
-                        .fontWeight(.bold)
+                        .font(getFont(weight: .bold, size: UIFont.buttonFontSize))
                     
                     TextField("Task name", text: $titleText)
-                        .font(.system(size: 17.0))
+                        .font(getFont(weight: .medium, size: UIFont.labelFontSize))
                         .padding()
                         .frame(height: 50.0)
                         .frame(maxWidth: .infinity)

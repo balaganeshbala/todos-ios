@@ -15,6 +15,12 @@ struct HomeScreen: View {
     @State var showUpdateItemView: Bool = false
     @State var itemToUpdate: ItemModel = ItemModel.defaultItem()
     
+    let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    
+    init() {
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Quicksand-Bold", size: 30)!]
+    }
+    
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
@@ -29,6 +35,7 @@ struct HomeScreen: View {
                 
                 //MARK: Add Button
                 Button {
+                    feedbackGenerator.impactOccurred()
                     showAddNewItemView.toggle()
                 } label: {
                     PlusImageView()

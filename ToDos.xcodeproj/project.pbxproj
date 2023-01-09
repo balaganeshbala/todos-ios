@@ -17,6 +17,11 @@
 		DC5D014B2949C2710017C67A /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01472949C2710017C67A /* CustomViews.swift */; };
 		DC5D014C2949C2710017C67A /* UpdateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01482949C2710017C67A /* UpdateItemView.swift */; };
 		DC5D014D2949C2710017C67A /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01492949C2710017C67A /* ListView.swift */; };
+		DCB493592959B47E00693E01 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493542959B47E00693E01 /* Quicksand-Regular.ttf */; };
+		DCB4935A2959B47E00693E01 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493552959B47E00693E01 /* Quicksand-SemiBold.ttf */; };
+		DCB4935B2959B47E00693E01 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493562959B47E00693E01 /* Quicksand-Light.ttf */; };
+		DCB4935C2959B47E00693E01 /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493572959B47E00693E01 /* Quicksand-Bold.ttf */; };
+		DCB4935D2959B47E00693E01 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493582959B47E00693E01 /* Quicksand-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +36,12 @@
 		DC5D01472949C2710017C67A /* CustomViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		DC5D01482949C2710017C67A /* UpdateItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateItemView.swift; sourceTree = "<group>"; };
 		DC5D01492949C2710017C67A /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		DCB493542959B47E00693E01 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
+		DCB493552959B47E00693E01 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
+		DCB493562959B47E00693E01 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
+		DCB493572959B47E00693E01 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
+		DCB493582959B47E00693E01 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
+		DCB493602959B4AC00693E01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +74,14 @@
 		DC29ED652935CFE900EBB921 /* ToDos */ = {
 			isa = PBXGroup;
 			children = (
+				DCB493602959B4AC00693E01 /* Info.plist */,
 				DC29ED662935CFE900EBB921 /* ToDosApp.swift */,
 				DC5D01372949BFB60017C67A /* Model */,
 				DC5D013B2949BFB70017C67A /* ModelView */,
 				DC5D01392949BFB60017C67A /* Screens */,
 				DC5D01452949C2710017C67A /* Views */,
 				DC29ED6A2935CFEB00EBB921 /* Assets.xcassets */,
+				DCB4935E2959B48B00693E01 /* Resources */,
 				DC29ED6C2935CFEB00EBB921 /* Preview Content */,
 			);
 			path = ToDos;
@@ -115,6 +128,26 @@
 				DC5D01492949C2710017C67A /* ListView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DCB4935E2959B48B00693E01 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DCB4935F2959B49A00693E01 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		DCB4935F2959B49A00693E01 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DCB493572959B47E00693E01 /* Quicksand-Bold.ttf */,
+				DCB493562959B47E00693E01 /* Quicksand-Light.ttf */,
+				DCB493582959B47E00693E01 /* Quicksand-Medium.ttf */,
+				DCB493542959B47E00693E01 /* Quicksand-Regular.ttf */,
+				DCB493552959B47E00693E01 /* Quicksand-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,7 +209,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC29ED6E2935CFEB00EBB921 /* Preview Assets.xcassets in Resources */,
+				DCB4935C2959B47E00693E01 /* Quicksand-Bold.ttf in Resources */,
+				DCB4935D2959B47E00693E01 /* Quicksand-Medium.ttf in Resources */,
+				DCB4935A2959B47E00693E01 /* Quicksand-SemiBold.ttf in Resources */,
+				DCB493592959B47E00693E01 /* Quicksand-Regular.ttf in Resources */,
 				DC29ED6B2935CFEB00EBB921 /* Assets.xcassets in Resources */,
+				DCB4935B2959B47E00693E01 /* Quicksand-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +364,7 @@
 				DEVELOPMENT_TEAM = Q5973QP9JP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDos/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -357,6 +396,7 @@
 				DEVELOPMENT_TEAM = Q5973QP9JP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDos/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -15,6 +15,8 @@ struct ListView: View {
     @Binding var itemToUpdate: ItemModel
     @Binding var showUpdateItemView: Bool
     
+    let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    
     var body: some View {
         List {
             ForEach(itemsModelView.todoItems) { item in
@@ -23,6 +25,7 @@ struct ListView: View {
                     
                     CheckmarkView(isChecked: item.isCompleted)
                     .onTapGesture {
+                        feedbackGenerator.impactOccurred()
                         self.updatedItem = item
                     }
                     
@@ -33,11 +36,12 @@ struct ListView: View {
                     } label: {
                         Text(item.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.system(size: 17.0))
-                            .padding(.vertical, 8.0)
+                            .font(getFont(weight: .medium, size: UIFont.labelFontSize))
+                            .padding(.vertical, 16.0)
                     }
                     .tint(Color("TextColor"))
                 }
+                .listRowInsets(EdgeInsets(top: 0, leading: 16.0, bottom: 0, trailing: 16.0))
             }
             .onDelete(perform: itemsModelView.deleteItem)
             .onMove(perform: itemsModelView.moveItem)
