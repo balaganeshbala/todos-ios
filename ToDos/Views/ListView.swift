@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ListView: View {
     
     @ObservedObject var itemsModelView: ItemsModelView
-    @State var updatedItem: ItemModel = ItemModel.defaultItem()
     
-    @Binding var itemToUpdate: ItemModel
+    @Binding var itemToUpdate: ItemEntity
     @Binding var showUpdateItemView: Bool
     
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
@@ -26,7 +26,7 @@ struct ListView: View {
                     CheckmarkView(isChecked: item.isCompleted)
                     .onTapGesture {
                         feedbackGenerator.impactOccurred()
-                        self.updatedItem = item
+                        itemsModelView.updateCompletion(item: item)
                     }
                     
                     
@@ -34,7 +34,7 @@ struct ListView: View {
                         self.itemToUpdate = item
                         self.showUpdateItemView = true
                     } label: {
-                        Text(item.title)
+                        Text(item.title ?? "")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(getFont(weight: .medium, size: UIFont.labelFontSize))
                             .padding(.vertical, 16.0)
@@ -45,7 +45,6 @@ struct ListView: View {
             }
             .onDelete(perform: itemsModelView.deleteItem)
             .onMove(perform: itemsModelView.moveItem)
-            .onChange(of: self.updatedItem, perform: itemsModelView.updateCompletion)
         }
         .listStyle(.grouped)
     }

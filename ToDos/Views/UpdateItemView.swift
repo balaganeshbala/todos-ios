@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct UpdateItemView: View {
     @Binding var isPresented: Bool
@@ -15,7 +16,7 @@ struct UpdateItemView: View {
     @State var titleText : String = ""
     @State var isInputValid: Bool = false
     
-    let itemToUpdate: ItemModel
+    let itemToUpdate: ItemEntity
     
     @FocusState private var titleInFocus: Bool
     
@@ -58,7 +59,9 @@ struct UpdateItemView: View {
                         }
                         
                         Button {
-                            todoItems.updateItem(item: ItemModel(id: itemToUpdate.id, title: titleText, isCompleted: itemToUpdate.isCompleted))
+                            // TODO: Move this logic to ViewModel
+                            itemToUpdate.title = titleText
+                            todoItems.saveAndUpdateData()
                             isPresented = false
                         } label: {
                             Text("Update")
@@ -79,7 +82,7 @@ struct UpdateItemView: View {
             }
             .onAppear() {
                 titleInFocus = true
-                titleText = itemToUpdate.title
+                titleText = itemToUpdate.title ?? ""
             }
         }
         .ignoresSafeArea()
@@ -90,7 +93,7 @@ struct UpdateItemView_Previews: PreviewProvider {
     
     @State static var isPresented: Bool = true
     
-    static let itemModel: ItemModel = ItemModel.defaultItem()
+    static let itemModel: ItemEntity = ItemEntity()
     
     static var previews: some View {
         UpdateItemView(isPresented: $isPresented, todoItems: ItemsModelView(), itemToUpdate: itemModel)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct HomeScreen: View {
     
@@ -13,7 +14,7 @@ struct HomeScreen: View {
     @State var inputText: String = ""
     @State var showAddNewItemView: Bool = false
     @State var showUpdateItemView: Bool = false
-    @State var itemToUpdate: ItemModel = ItemModel.defaultItem()
+    @State var itemToUpdate: ItemEntity = ItemEntity()
     
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
