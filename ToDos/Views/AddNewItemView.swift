@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddNewItemView: View {
     
     @Binding var isPresented: Bool
     
-    @ObservedObject var todoItems: ItemsModelView
+    let itemsViewModel: ItemsViewModel
     
     @State var titleText : String = ""
     @State var isInputValid: Bool = false
@@ -44,9 +45,9 @@ struct AddNewItemView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.gray.opacity(0.3).cornerRadius(10.0))
                         .focused($titleInFocus)
-                        .onChange(of: titleText) { newValue in
+                        .onChange(of: titleText, initial: false, { oldValue, newValue in
                             isInputValid = newValue.count >= 3
-                        }
+                        })
                     
                     HStack {
                         Button {
@@ -57,7 +58,7 @@ struct AddNewItemView: View {
                         }
                         
                         Button {
-                            todoItems.addItem(title: titleText)
+                            itemsViewModel.addItem(title: titleText)
                             isPresented = false
                         } label: {
                             Text("Add")
@@ -85,11 +86,15 @@ struct AddNewItemView: View {
     }
 }
 
-struct AddNewItemView_Previews: PreviewProvider {
+struct AddNewItemView_Preview: View {
+    @State var isPresented: Bool = true
+    let modelContext = try! ModelContext(ModelContainer(for: TodoItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true)))
     
-    @State static var isPresented: Bool = true
-    
-    static var previews: some View {
-        AddNewItemView(isPresented: $isPresented, todoItems: ItemsModelView())
+    var body: some View {
+        AddNewItemView(isPresented: $isPresented, itemsViewModel: ItemsViewModel(modelContext: modelContext, todoItems: []))
     }
+}
+
+#Preview {
+    AddNewItemView_Preview()
 }

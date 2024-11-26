@@ -10,10 +10,8 @@
 		DC29ED672935CFE900EBB921 /* ToDosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29ED662935CFE900EBB921 /* ToDosApp.swift */; };
 		DC29ED6B2935CFEB00EBB921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC29ED6A2935CFEB00EBB921 /* Assets.xcassets */; };
 		DC29ED6E2935CFEB00EBB921 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC29ED6D2935CFEB00EBB921 /* Preview Assets.xcassets */; };
-		DC4AC9EB296C18B100E0D2A6 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC4AC9E9296C18B100E0D2A6 /* DataModel.xcdatamodeld */; };
-		DC4AC9ED296C4A2900E0D2A6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4AC9EC296C4A2900E0D2A6 /* Persistence.swift */; };
 		DC5D01422949BFB70017C67A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D013A2949BFB60017C67A /* HomeScreen.swift */; };
-		DC5D01432949BFB70017C67A /* ItemsModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D013C2949BFB70017C67A /* ItemsModelView.swift */; };
+		DC5D01432949BFB70017C67A /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D013C2949BFB70017C67A /* ItemsViewModel.swift */; };
 		DC5D014A2949C2710017C67A /* AddNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01462949C2710017C67A /* AddNewItemView.swift */; };
 		DC5D014B2949C2710017C67A /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01472949C2710017C67A /* CustomViews.swift */; };
 		DC5D014C2949C2710017C67A /* UpdateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01482949C2710017C67A /* UpdateItemView.swift */; };
@@ -23,6 +21,7 @@
 		DCB4935B2959B47E00693E01 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493562959B47E00693E01 /* Quicksand-Light.ttf */; };
 		DCB4935C2959B47E00693E01 /* Quicksand-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493572959B47E00693E01 /* Quicksand-Bold.ttf */; };
 		DCB4935D2959B47E00693E01 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493582959B47E00693E01 /* Quicksand-Medium.ttf */; };
+		DCCE75842CF5CBF60066CECA /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE75832CF5CBF10066CECA /* TodoItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,10 +29,8 @@
 		DC29ED662935CFE900EBB921 /* ToDosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDosApp.swift; sourceTree = "<group>"; };
 		DC29ED6A2935CFEB00EBB921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC29ED6D2935CFEB00EBB921 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DC4AC9EA296C18B100E0D2A6 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		DC4AC9EC296C4A2900E0D2A6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		DC5D013A2949BFB60017C67A /* HomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
-		DC5D013C2949BFB70017C67A /* ItemsModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsModelView.swift; sourceTree = "<group>"; };
+		DC5D013C2949BFB70017C67A /* ItemsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
 		DC5D01462949C2710017C67A /* AddNewItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemView.swift; sourceTree = "<group>"; };
 		DC5D01472949C2710017C67A /* CustomViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		DC5D01482949C2710017C67A /* UpdateItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateItemView.swift; sourceTree = "<group>"; };
@@ -44,6 +41,7 @@
 		DCB493572959B47E00693E01 /* Quicksand-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Bold.ttf"; sourceTree = "<group>"; };
 		DCB493582959B47E00693E01 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
 		DCB493602959B4AC00693E01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DCCE75832CF5CBF10066CECA /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +77,7 @@
 				DCB493602959B4AC00693E01 /* Info.plist */,
 				DC29ED662935CFE900EBB921 /* ToDosApp.swift */,
 				DC5D01372949BFB60017C67A /* Model */,
-				DC5D013B2949BFB70017C67A /* ModelView */,
+				DC5D013B2949BFB70017C67A /* ViewModel */,
 				DC5D01392949BFB60017C67A /* Screens */,
 				DC5D01452949C2710017C67A /* Views */,
 				DC29ED6A2935CFEB00EBB921 /* Assets.xcassets */,
@@ -100,8 +98,7 @@
 		DC5D01372949BFB60017C67A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DC4AC9E9296C18B100E0D2A6 /* DataModel.xcdatamodeld */,
-				DC4AC9EC296C4A2900E0D2A6 /* Persistence.swift */,
+				DCCE75832CF5CBF10066CECA /* TodoItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -114,12 +111,12 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		DC5D013B2949BFB70017C67A /* ModelView */ = {
+		DC5D013B2949BFB70017C67A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DC5D013C2949BFB70017C67A /* ItemsModelView.swift */,
+				DC5D013C2949BFB70017C67A /* ItemsViewModel.swift */,
 			);
-			path = ModelView;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DC5D01452949C2710017C67A /* Views */ = {
@@ -228,15 +225,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCCE75842CF5CBF60066CECA /* TodoItem.swift in Sources */,
 				DC5D014D2949C2710017C67A /* ListView.swift in Sources */,
 				DC5D014A2949C2710017C67A /* AddNewItemView.swift in Sources */,
 				DC5D014C2949C2710017C67A /* UpdateItemView.swift in Sources */,
 				DC5D01422949BFB70017C67A /* HomeScreen.swift in Sources */,
 				DC5D014B2949C2710017C67A /* CustomViews.swift in Sources */,
-				DC4AC9EB296C18B100E0D2A6 /* DataModel.xcdatamodeld in Sources */,
-				DC5D01432949BFB70017C67A /* ItemsModelView.swift in Sources */,
+				DC5D01432949BFB70017C67A /* ItemsViewModel.swift in Sources */,
 				DC29ED672935CFE900EBB921 /* ToDosApp.swift in Sources */,
-				DC4AC9ED296C4A2900E0D2A6 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +289,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -347,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -375,7 +371,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -407,7 +403,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -443,19 +439,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		DC4AC9E9296C18B100E0D2A6 /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				DC4AC9EA296C18B100E0D2A6 /* DataModel.xcdatamodel */,
-			);
-			currentVersion = DC4AC9EA296C18B100E0D2A6 /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = DC29ED5B2935CFE900EBB921 /* Project object */;
 }

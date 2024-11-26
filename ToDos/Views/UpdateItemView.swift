@@ -7,16 +7,17 @@
 
 import SwiftUI
 import CoreData
+import SwiftData
 
 struct UpdateItemView: View {
     @Binding var isPresented: Bool
     
-    @ObservedObject var todoItems: ItemsModelView
+    let todoItems: ItemsViewModel
     
     @State var titleText : String = ""
     @State var isInputValid: Bool = false
     
-    let itemToUpdate: ItemEntity
+    var itemToUpdate: TodoItem?
     
     @FocusState private var titleInFocus: Bool
     
@@ -46,9 +47,9 @@ struct UpdateItemView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.gray.opacity(0.3).cornerRadius(10.0))
                         .focused($titleInFocus)
-                        .onChange(of: titleText) { newValue in
+                        .onChange(of: titleText, initial: false, { oldValue, newValue in
                             isInputValid = newValue.count >= 3
-                        }
+                        })
                     
                     HStack {
                         Button {
@@ -60,8 +61,7 @@ struct UpdateItemView: View {
                         
                         Button {
                             // TODO: Move this logic to ViewModel
-                            itemToUpdate.title = titleText
-                            todoItems.saveAndUpdateData()
+                            itemToUpdate?.title = titleText
                             isPresented = false
                         } label: {
                             Text("Update")
@@ -82,20 +82,24 @@ struct UpdateItemView: View {
             }
             .onAppear() {
                 titleInFocus = true
-                titleText = itemToUpdate.title ?? ""
+                titleText = itemToUpdate?.title ?? ""
             }
         }
         .ignoresSafeArea()
     }
 }
 
-struct UpdateItemView_Previews: PreviewProvider {
+struct UpdateItemView_Previews: View {
     
-    @State static var isPresented: Bool = true
+    @State var isPresented: Bool = true
     
-    static let itemModel: ItemEntity = ItemEntity()
-    
-    static var previews: some View {
-        UpdateItemView(isPresented: $isPresented, todoItems: ItemsModelView(), itemToUpdate: itemModel)
+    let modelContext = try! ModelContext(ModelContainer(for: TodoItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true)))
+
+    var body: some View {
+        UpdateItemView(isPresented: $isPresented, todoItems: ItemsViewModel(modelContext: modelContext, todoItems: []))
     }
+}
+
+#Preview {
+    UpdateItemView_Previews()
 }

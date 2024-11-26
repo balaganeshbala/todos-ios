@@ -12,6 +12,7 @@ struct ToDosApp: App {
     var body: some Scene {
         WindowGroup {
             HomeScreen()
+                .modelContainer(for: TodoItem.self)
         }
     }
 }

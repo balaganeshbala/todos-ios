@@ -10,9 +10,9 @@ import CoreData
 
 struct ListView: View {
     
-    @ObservedObject var itemsModelView: ItemsModelView
+    let itemsModelView: ItemsViewModel
     
-    @Binding var itemToUpdate: ItemEntity
+    @Binding var itemToUpdate: TodoItem?
     @Binding var showUpdateItemView: Bool
     
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
@@ -34,7 +34,7 @@ struct ListView: View {
                         self.itemToUpdate = item
                         self.showUpdateItemView = true
                     } label: {
-                        Text(item.title ?? "")
+                        Text(item.title)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(getFont(weight: .medium, size: UIFont.labelFontSize))
                             .padding(.vertical, 16.0)
