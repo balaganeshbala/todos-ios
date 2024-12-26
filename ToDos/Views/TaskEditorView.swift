@@ -1,28 +1,35 @@
 //
-//  UpdateItemView.swift
-//  BoilerPlateSUI
+//  TaskEditorMode.swift
+//  ToDos
 //
-//  Created by Balaganesh on 14/12/22.
+//  Created by Balaganesh on 26/12/24.
 //
+
 
 import SwiftUI
-import CoreData
 import SwiftData
 
-struct UpdateItemView: View {
+enum TaskEditorMode {
+    case add
+    case edit
+}
+
+struct TaskEditorView: View {
+    
     @Binding var isPresented: Bool
     
-    let todoItems: ItemsViewModel
+    let itemsViewModel: ItemsViewModel
+    let mode: TaskEditorMode
     
-    @State var titleText : String = ""
-    @State var isInputValid: Bool = false
+    let itemIndex: Int?
+    let item: TodoItem?
     
-    var itemToUpdate: TodoItem?
+    @State private var titleText: String = ""
+    @State private var isInputValid: Bool = false
     
     @FocusState private var titleInFocus: Bool
     
     var body: some View {
-        
         ZStack {
             
             VStack {
@@ -37,7 +44,7 @@ struct UpdateItemView: View {
                 
                 VStack(spacing: 20.0) {
                     
-                    Text("Edit Task")
+                    Text(mode == .add ? "Add New Task" : "Edit Task")
                         .font(getFont(weight: .bold, size: UIFont.buttonFontSize))
                     
                     TextField("Task name", text: $titleText)
@@ -60,11 +67,14 @@ struct UpdateItemView: View {
                         }
                         
                         Button {
-                            // TODO: Move this logic to ViewModel
-                            itemToUpdate?.title = titleText
+                            if mode == .add {
+                                itemsViewModel.addItem(title: titleText)
+                            } else if let index = itemIndex {
+                                itemsViewModel.updateTitle(newTitle: titleText, forItemAt: index)
+                            }
                             isPresented = false
                         } label: {
-                            Text("Update")
+                            Text(mode == .add ? "Add" : "Update")
                                 .primaryButton()
                                 .grayscale(isInputValid ? 0.0 : 1.0)
                                 .opacity(isInputValid ? 1.0 : 0.5)
@@ -76,30 +86,49 @@ struct UpdateItemView: View {
                 .background(Color("ThemeColor"))
                 .cornerRadius(10.0)
                 .padding(.horizontal, 20)
+                .transition(.move(edge: .bottom))
                 
                 Spacer()
                 Spacer()
             }
             .onAppear() {
                 titleInFocus = true
-                titleText = itemToUpdate?.title ?? ""
+                if mode == .edit {
+                    titleText = item?.title ?? ""
+                }
             }
         }
         .ignoresSafeArea()
     }
 }
 
-struct UpdateItemView_Previews: View {
-    
+struct TaskEditorView_Previews: View {
     @State var isPresented: Bool = true
     
-    let modelContext = try! ModelContext(ModelContainer(for: TodoItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true)))
-
     var body: some View {
-        UpdateItemView(isPresented: $isPresented, todoItems: ItemsViewModel(modelContext: modelContext, todoItems: []))
+        TaskEditorView(isPresented: $isPresented,
+                       itemsViewModel: ItemsViewModel(),
+                       mode: .add,
+                       itemIndex: nil,
+                       item: nil)
+    }
+}
+
+struct EditTaskEditorView_Previews: View {
+    @State var isPresented: Bool = true
+    
+    var body: some View {
+        TaskEditorView(isPresented: $isPresented,
+                       itemsViewModel: ItemsViewModel(),
+                       mode: .edit,
+                       itemIndex: 0,
+                       item: TodoItem.dummyItem())
     }
 }
 
 #Preview {
-    UpdateItemView_Previews()
+    VStack {
+        TaskEditorView_Previews()
+        EditTaskEditorView_Previews()
+    }
 }

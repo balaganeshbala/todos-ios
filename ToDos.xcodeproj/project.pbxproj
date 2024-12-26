@@ -10,12 +10,15 @@
 		DC29ED672935CFE900EBB921 /* ToDosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29ED662935CFE900EBB921 /* ToDosApp.swift */; };
 		DC29ED6B2935CFEB00EBB921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC29ED6A2935CFEB00EBB921 /* Assets.xcassets */; };
 		DC29ED6E2935CFEB00EBB921 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC29ED6D2935CFEB00EBB921 /* Preview Assets.xcassets */; };
+		DC55347C2D195FB2006C73E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC55347B2D195FB1006C73E1 /* GoogleService-Info.plist */; };
+		DC55347F2D19603E006C73E1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DC55347E2D19603E006C73E1 /* FirebaseFirestore */; };
+		DC5534822D1960AE006C73E1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DC5534812D1960AE006C73E1 /* FirebaseFirestore */; };
 		DC5D01422949BFB70017C67A /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D013A2949BFB60017C67A /* HomeScreen.swift */; };
 		DC5D01432949BFB70017C67A /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D013C2949BFB70017C67A /* ItemsViewModel.swift */; };
-		DC5D014A2949C2710017C67A /* AddNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01462949C2710017C67A /* AddNewItemView.swift */; };
 		DC5D014B2949C2710017C67A /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01472949C2710017C67A /* CustomViews.swift */; };
-		DC5D014C2949C2710017C67A /* UpdateItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01482949C2710017C67A /* UpdateItemView.swift */; };
 		DC5D014D2949C2710017C67A /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01492949C2710017C67A /* ListView.swift */; };
+		DC7DE6DD2D1ACAE2009369B4 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DE6DC2D1ACAE2009369B4 /* LoaderView.swift */; };
+		DC7DE6DF2D1D32F6009369B4 /* TaskEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DE6DE2D1D32F6009369B4 /* TaskEditorView.swift */; };
 		DCB493592959B47E00693E01 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493542959B47E00693E01 /* Quicksand-Regular.ttf */; };
 		DCB4935A2959B47E00693E01 /* Quicksand-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493552959B47E00693E01 /* Quicksand-SemiBold.ttf */; };
 		DCB4935B2959B47E00693E01 /* Quicksand-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCB493562959B47E00693E01 /* Quicksand-Light.ttf */; };
@@ -29,12 +32,13 @@
 		DC29ED662935CFE900EBB921 /* ToDosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDosApp.swift; sourceTree = "<group>"; };
 		DC29ED6A2935CFEB00EBB921 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC29ED6D2935CFEB00EBB921 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DC55347B2D195FB1006C73E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC5D013A2949BFB60017C67A /* HomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		DC5D013C2949BFB70017C67A /* ItemsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
-		DC5D01462949C2710017C67A /* AddNewItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewItemView.swift; sourceTree = "<group>"; };
 		DC5D01472949C2710017C67A /* CustomViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
-		DC5D01482949C2710017C67A /* UpdateItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateItemView.swift; sourceTree = "<group>"; };
 		DC5D01492949C2710017C67A /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+		DC7DE6DC2D1ACAE2009369B4 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
+		DC7DE6DE2D1D32F6009369B4 /* TaskEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditorView.swift; sourceTree = "<group>"; };
 		DCB493542959B47E00693E01 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		DCB493552959B47E00693E01 /* Quicksand-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-SemiBold.ttf"; sourceTree = "<group>"; };
 		DCB493562959B47E00693E01 /* Quicksand-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Light.ttf"; sourceTree = "<group>"; };
@@ -49,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC55347F2D19603E006C73E1 /* FirebaseFirestore in Frameworks */,
+				DC5534822D1960AE006C73E1 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				DCB493602959B4AC00693E01 /* Info.plist */,
+				DC55347B2D195FB1006C73E1 /* GoogleService-Info.plist */,
 				DC29ED662935CFE900EBB921 /* ToDosApp.swift */,
 				DC5D01372949BFB60017C67A /* Model */,
 				DC5D013B2949BFB70017C67A /* ViewModel */,
@@ -122,9 +129,9 @@
 		DC5D01452949C2710017C67A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				DC5D01462949C2710017C67A /* AddNewItemView.swift */,
+				DC7DE6DE2D1D32F6009369B4 /* TaskEditorView.swift */,
+				DC7DE6DC2D1ACAE2009369B4 /* LoaderView.swift */,
 				DC5D01472949C2710017C67A /* CustomViews.swift */,
-				DC5D01482949C2710017C67A /* UpdateItemView.swift */,
 				DC5D01492949C2710017C67A /* ListView.swift */,
 			);
 			path = Views;
@@ -194,6 +201,9 @@
 				Base,
 			);
 			mainGroup = DC29ED5A2935CFE900EBB921;
+			packageReferences = (
+				DC5534802D1960AE006C73E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = DC29ED642935CFE900EBB921 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -209,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC29ED6E2935CFEB00EBB921 /* Preview Assets.xcassets in Resources */,
+				DC55347C2D195FB2006C73E1 /* GoogleService-Info.plist in Resources */,
 				DCB4935C2959B47E00693E01 /* Quicksand-Bold.ttf in Resources */,
 				DCB4935D2959B47E00693E01 /* Quicksand-Medium.ttf in Resources */,
 				DCB4935A2959B47E00693E01 /* Quicksand-SemiBold.ttf in Resources */,
@@ -227,12 +238,12 @@
 			files = (
 				DCCE75842CF5CBF60066CECA /* TodoItem.swift in Sources */,
 				DC5D014D2949C2710017C67A /* ListView.swift in Sources */,
-				DC5D014A2949C2710017C67A /* AddNewItemView.swift in Sources */,
-				DC5D014C2949C2710017C67A /* UpdateItemView.swift in Sources */,
+				DC7DE6DF2D1D32F6009369B4 /* TaskEditorView.swift in Sources */,
 				DC5D01422949BFB70017C67A /* HomeScreen.swift in Sources */,
 				DC5D014B2949C2710017C67A /* CustomViews.swift in Sources */,
 				DC5D01432949BFB70017C67A /* ItemsViewModel.swift in Sources */,
 				DC29ED672935CFE900EBB921 /* ToDosApp.swift in Sources */,
+				DC7DE6DD2D1ACAE2009369B4 /* LoaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +450,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DC55347D2D19603E006C73E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+		DC5534802D1960AE006C73E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DC55347E2D19603E006C73E1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC55347D2D19603E006C73E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		DC5534812D1960AE006C73E1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC5534802D1960AE006C73E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DC29ED5B2935CFE900EBB921 /* Project object */;
 }

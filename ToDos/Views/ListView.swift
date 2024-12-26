@@ -12,26 +12,28 @@ struct ListView: View {
     
     let itemsModelView: ItemsViewModel
     
-    @Binding var itemToUpdate: TodoItem?
+    @Binding var selectedIndex: Int?
+    @Binding var selectedItem: TodoItem?
     @Binding var showUpdateItemView: Bool
     
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     var body: some View {
         List {
-            ForEach(itemsModelView.todoItems) { item in
+            ForEach(Array(itemsModelView.todoItems.enumerated()), id: \.element.id) { index, item in
                 
                 HStack(spacing: 15.0) {
                     
                     CheckmarkView(isChecked: item.isCompleted)
                     .onTapGesture {
                         feedbackGenerator.impactOccurred()
-                        itemsModelView.updateCompletion(item: item)
+                        itemsModelView.updateCompletion(itemIndex: index)
                     }
                     
                     
                     Button {
-                        self.itemToUpdate = item
+                        self.selectedIndex = index
+                        self.selectedItem = item
                         self.showUpdateItemView = true
                     } label: {
                         Text(item.title)

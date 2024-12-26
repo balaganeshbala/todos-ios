@@ -6,18 +6,15 @@
 //
 
 import SwiftUI
-import SwiftData
 
-struct HomeScreen: View {
-    
-    @Environment(\.modelContext) var modelContext
-    
-    @Query(sort: [SortDescriptor(\TodoItem.orderIndex)]) var todoItems: [TodoItem] = []
+struct HomeScreen: View {    
+    @StateObject var itemsViewModel = ItemsViewModel()
     
     @State var inputText: String = ""
     @State var showAddNewItemView: Bool = false
     @State var showUpdateItemView: Bool = false
-    @State var itemToUpdate: TodoItem?
+    @State var selectedIndex: Int?
+    @State var selectedItem: TodoItem?
     
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
@@ -26,18 +23,19 @@ struct HomeScreen: View {
     }
     
     var body: some View {
-        
-        let itemsViewModel = ItemsViewModel(modelContext: modelContext, todoItems: todoItems)
-        
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
                 
                 //MARK: List View
-                if (todoItems.isEmpty) {
+                if (self.itemsViewModel.isLoading) {
+                    LoaderView()
+                        .frame(maxWidth: .infinity)
+                } else if (self.itemsViewModel.todoItems.isEmpty) {
                     EmptyListView()
                 } else {
                     ListView(itemsModelView: itemsViewModel,
-                             itemToUpdate: $itemToUpdate,
+                             selectedIndex: $selectedIndex,
+                             selectedItem: $selectedItem,
                              showUpdateItemView: $showUpdateItemView)
                 }
                 
@@ -54,14 +52,18 @@ struct HomeScreen: View {
                 
                 
                 if (showAddNewItemView) {
-                    AddNewItemView(isPresented: $showAddNewItemView, itemsViewModel: itemsViewModel)
+                    TaskEditorView(isPresented: $showAddNewItemView, itemsViewModel: itemsViewModel,
+                                   mode: .add,
+                                   itemIndex: nil,
+                                   item: nil)
                 }
                 
                 if (showUpdateItemView) {
-                    UpdateItemView(isPresented: $showUpdateItemView,
-                                   todoItems: itemsViewModel,
-                                   itemToUpdate: self.itemToUpdate
-                        )
+                    TaskEditorView(isPresented: $showUpdateItemView, itemsViewModel: self.itemsViewModel,
+                                   mode: .edit,
+                                   itemIndex: self.selectedIndex,
+                                   item: self.selectedItem)
+                
                 }
             }
             .navigationTitle("To Do List")
@@ -73,11 +75,8 @@ struct ContentView_Previews: PreviewProvider {
     
     @State static var popup: Bool = true
     
-    static let modelContext = try! ModelContext(ModelContainer(for: TodoItem.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true)))
-    
     static var previews: some View {
         HomeScreen()
-            .modelContext(modelContext)
     }
 }
 
