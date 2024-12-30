@@ -7,8 +7,11 @@
 
 import SwiftUI
 
-struct HomeScreen: View {    
-    @StateObject var itemsViewModel = ItemsViewModel()
+struct HomeScreen: View {
+    
+    let user: User
+    
+    @StateObject private var itemsViewModel: ItemsViewModel
     
     @State var inputText: String = ""
     @State var showAddNewItemView: Bool = false
@@ -18,7 +21,9 @@ struct HomeScreen: View {
     
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
-    init() {
+    init(user: User) {
+        self.user = user
+        _itemsViewModel = StateObject(wrappedValue: ItemsViewModel(user: user))
         UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "Quicksand-Bold", size: 30)!]
     }
     
@@ -26,17 +31,41 @@ struct HomeScreen: View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
                 
-                //MARK: List View
-                if (self.itemsViewModel.isLoading) {
-                    LoaderView()
-                        .frame(maxWidth: .infinity)
-                } else if (self.itemsViewModel.todoItems.isEmpty) {
-                    EmptyListView()
-                } else {
-                    ListView(itemsModelView: itemsViewModel,
-                             selectedIndex: $selectedIndex,
-                             selectedItem: $selectedItem,
-                             showUpdateItemView: $showUpdateItemView)
+                VStack(alignment: .leading) {
+                    
+                    //MARK: Profile Header View
+                    VStack(alignment: .leading, spacing: 15) {
+                        NavigationLink {
+                            ProfileScreen(user: user)
+                        } label: {
+                            Image(systemName: "person.circle")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                        }
+                        Text("Hi, \(user.name)")
+                            .font(getFont(weight: .bold, size: 20))
+                            .font(.title)
+                        
+                        Divider()
+                    }
+                    .padding(20)
+                    
+                    //MARK: List View
+                    if (self.itemsViewModel.isLoading) {
+                        LoaderView()
+                            .frame(maxWidth: .infinity)
+                    } else if (self.itemsViewModel.todoItems.isEmpty) {
+                        EmptyListView()
+                    } else {
+                        Text("Your To Dos")
+                            .foregroundColor(.gray)
+                            .font(getFont(weight: .semibold, size: 20))
+                            .padding(.leading, 20)
+                        ListView(itemsModelView: itemsViewModel,
+                                 selectedIndex: $selectedIndex,
+                                 selectedItem: $selectedItem,
+                                 showUpdateItemView: $showUpdateItemView)
+                    }
                 }
                 
                 
@@ -66,7 +95,6 @@ struct HomeScreen: View {
                 
                 }
             }
-            .navigationTitle("To Do List")
         }
     }
 }
@@ -76,7 +104,7 @@ struct ContentView_Previews: PreviewProvider {
     @State static var popup: Bool = true
     
     static var previews: some View {
-        HomeScreen()
+        HomeScreen(user: User.dummyUser())
     }
 }
 

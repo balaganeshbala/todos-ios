@@ -7,7 +7,6 @@
 
 
 import SwiftUI
-import SwiftData
 
 enum TaskEditorMode {
     case add
@@ -18,7 +17,7 @@ struct TaskEditorView: View {
     
     @Binding var isPresented: Bool
     
-    let itemsViewModel: ItemsViewModel
+    var itemsViewModel: ItemsViewModel?
     let mode: TaskEditorMode
     
     let itemIndex: Int?
@@ -68,9 +67,9 @@ struct TaskEditorView: View {
                         
                         Button {
                             if mode == .add {
-                                itemsViewModel.addItem(title: titleText)
+                                itemsViewModel?.addItem(title: titleText)
                             } else if let index = itemIndex {
-                                itemsViewModel.updateTitle(newTitle: titleText, forItemAt: index)
+                                itemsViewModel?.updateTitle(newTitle: titleText, forItemAt: index)
                             }
                             isPresented = false
                         } label: {
@@ -107,7 +106,6 @@ struct TaskEditorView_Previews: View {
     
     var body: some View {
         TaskEditorView(isPresented: $isPresented,
-                       itemsViewModel: ItemsViewModel(),
                        mode: .add,
                        itemIndex: nil,
                        item: nil)
@@ -119,7 +117,6 @@ struct EditTaskEditorView_Previews: View {
     
     var body: some View {
         TaskEditorView(isPresented: $isPresented,
-                       itemsViewModel: ItemsViewModel(),
                        mode: .edit,
                        itemIndex: 0,
                        item: TodoItem.dummyItem())

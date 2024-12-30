@@ -8,33 +8,45 @@
 import Foundation
 import FirebaseFirestore
 
+@MainActor
 class ItemsViewModel: ObservableObject {
     
     @Published var todoItems: [TodoItem] = []
     @Published var isLoading = false
     
-    init() {
-        self.fetchAllToDosFromFirestore()
+    let user: User
+    
+    init(user: User) {
+        self.user = user
+        Task {
+            await self.fetchAllToDosFromFirestore()
+        }
     }
     
     func updateTitle(newTitle: String, forItemAt index: Int) {
         let item = todoItems[index]
         let newItem = TodoItem(id: item.id, orderIndex: item.orderIndex, title: newTitle, at: item.at, isCompleted: item.isCompleted)
         todoItems[index] = newItem
-        saveToDoToFirestore(todo: newItem)
+        Task {
+            await saveToDoToFirestore(todo: newItem)
+        }
     }
     
     func updateCompletion(itemIndex: Int) {
         let item = todoItems[itemIndex]
         let newItem = TodoItem(id: item.id, orderIndex: item.orderIndex, title: item.title, at: item.at, isCompleted: !item.isCompleted)
         todoItems[itemIndex] = newItem
-        saveToDoToFirestore(todo: newItem)
+        Task {
+            await saveToDoToFirestore(todo: newItem)
+        }
     }
     
     func addItem(title: String, id: String = UUID().uuidString, isCompleted: Bool = false) {
         let newItem = TodoItem(id: id, orderIndex: todoItems.count, title: title, at: Date.now, isCompleted: isCompleted)
         todoItems.append(newItem)
-        saveToDoToFirestore(todo: newItem)
+        Task {
+            await saveToDoToFirestore(todo: newItem)
+        }
     }
     
     func getItem(itemIndex: IndexSet) -> TodoItem? {
@@ -57,8 +69,10 @@ class ItemsViewModel: ObservableObject {
             itemIndex.forEach { index in
                 todoItems.remove(at: index)
             }
-            deleteToDoFromFirestore(todo: objectToDelete)
-            saveTodoListToFirestore()
+            Task {
+                await deleteToDoFromFirestore(todo: objectToDelete)
+                saveTodoListToFirestore()
+            }
         }
     }
     
@@ -73,60 +87,66 @@ class ItemsViewModel: ObservableObject {
     }
     
     func saveTodoListToFirestore() {
-        for todo in self.todoItems {
-            saveToDoToFirestore(todo: todo)
+        Task {
+            for todo in self.todoItems {
+                await saveToDoToFirestore(todo: todo)
+            }
         }
     }
     
-    func fetchAllToDosFromFirestore() {
+    func fetchAllToDosFromFirestore() async {
         self.isLoading = true
         let db = Firestore.firestore()
-        db.collection("todos")
-            .order(by: "orderIndex", descending: false)
-            .getDocuments { querySnapshot, error in
-            if let error = error {
-                print("Error fetching todos: \(error.localizedDescription)")
-            } else if let documents = querySnapshot?.documents {
-                var todoItems: [TodoItem] = []
-                for document in documents {
-                    let data = document.data()
-                    do {
-                        let todo = try TodoItem(fromFirestoreData: data)
-                        todoItems.append(todo)
-                    } catch {
-                        print("Error parsing todo with id \(document.documentID): \(error.localizedDescription)")
-                    }
-                }
-                print("Fetched \(todoItems.count) todos successfully!")
-                self.todoItems = todoItems
-            } else {
-                print("No todos found.")
-            }
+        do {
+            let querySnapshot = try await db.collection("users")
+                .document(user.id)
+                .collection("todos")
+                .order(by: "orderIndex", descending: false)
+                .getDocuments()
             
-            self.isLoading = false
+            let documents = querySnapshot.documents
+            var todoItems: [TodoItem] = []
+            for document in documents {
+                let data = document.data()
+                do {
+                    let todo = try TodoItem(fromFirestoreData: data)
+                    todoItems.append(todo)
+                } catch {
+                    debugPrint("Error parsing todo with id \(document.documentID): \(error.localizedDescription)")
+                }
+            }
+            debugPrint("Fetched \(todoItems.count) todos successfully!")
+            self.todoItems = todoItems
+            
+        } catch {
+            debugPrint("Error fetching todos: \(error.localizedDescription)")
         }
+        self.isLoading = false
     }
     
-    func saveToDoToFirestore(todo: TodoItem) {
+    func saveToDoToFirestore(todo: TodoItem) async {
         let todoData = todo.toFirestoreData()
         let db = Firestore.firestore()
-        db.collection("todos").document(todo.id).setData(todoData) { error in
-            if let error = error {
-                print("Error saving todo with id \(todo.id): \(error.localizedDescription)")
-            } else {
-                print("Todo with id \(todo.id) saved successfully!")
-            }
+        do {
+            let _ = try await db.collection("users")
+                .document(user.id)
+                .collection("todos")
+                .document(todo.id).setData(todoData)
+            
+            debugPrint("Todo with id \(todo.id) saved successfully!")
+        } catch {
+            debugPrint("Error saving todo with id \(todo.id): \(error.localizedDescription)")
         }
     }
     
-    func deleteToDoFromFirestore(todo: TodoItem) {
+    func deleteToDoFromFirestore(todo: TodoItem) async {
         let db = Firestore.firestore()
-        db.collection("todos").document(todo.id).delete { error in
-            if let error = error {
-                print("Error deleting todo: \(error.localizedDescription)")
-            } else {
-                print("Todo with id \(todo.id) deleted successfully!")
-            }
+        do {
+            let _ = try await db.collection("users")
+                .document(user.id).collection("todos").document(todo.id).delete()
+            debugPrint("Todo with id \(todo.id) deleted successfully!")
+        } catch {
+            debugPrint("Error deleting todo: \(error.localizedDescription)")
         }
     }
 }

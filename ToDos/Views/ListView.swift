@@ -48,24 +48,24 @@ struct ListView: View {
             .onDelete(perform: itemsModelView.deleteItem)
             .onMove(perform: itemsModelView.moveItem)
         }
-        .listStyle(.grouped)
+        .listStyle(.inset)
     }
 }
 
 
 struct EmptyListView: View {
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 20) {
             Spacer()
             
             Image(systemName: "exclamationmark.circle")
                 .resizable()
                 .foregroundColor(Color("TextColor").opacity(0.4))
-                .frame(width: 60, height: 60)
+                .frame(width: 50, height: 50)
             
             
-            Text("List is Empty")
-                .font(.title)
+            Text("No To Dos")
+                .font(getFont(weight: .medium, size: 20))
                 .foregroundColor(Color("TextColor").opacity(0.4))
                 .frame(maxWidth: .infinity)
             

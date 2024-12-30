@@ -19,6 +19,17 @@ func getFont(weight: FontWeight, size: CGFloat) -> Font {
     Font.custom("Quicksand-" + weight.rawValue, size: size)
 }
 
+struct CustomTextField: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(getFont(weight: .medium, size: UIFont.labelFontSize))
+            .padding()
+            .frame(height: 50.0)
+            .frame(maxWidth: .infinity)
+            .background(Color.gray.opacity(0.3).cornerRadius(10.0))
+    }
+}
+
 struct CustomPrimaryButton: ViewModifier {
     
     private let themeColor: LinearGradient = LinearGradient(colors: [.pink, .red], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -30,7 +41,7 @@ struct CustomPrimaryButton: ViewModifier {
             .frame(maxWidth: .infinity)
             .font(getFont(weight: .medium, size: UIFont.buttonFontSize))
             .padding(.vertical, 12.0)
-            .background(themeColor)
+            .background(Color.accentColor)
             .foregroundColor(Color.white)
             .cornerRadius(cornerRadius)
     }
@@ -48,7 +59,7 @@ struct CustomSecondaryButton: ViewModifier {
             .font(getFont(weight: .medium, size: UIFont.buttonFontSize))
             .padding(.vertical, 12.0)
             .background(Color.clear)
-            .foregroundColor(Color.pink)
+            .foregroundColor(Color.accentColor)
             .overlay(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(themeColor, lineWidth: 1)
@@ -65,6 +76,27 @@ extension View {
     func secondaryButton() -> some View {
         modifier(CustomSecondaryButton())
     }
+    
+    func textFieldStyle() -> some View {
+        modifier(CustomTextField())
+    }
+}
+
+struct DummyLoginImage: View {
+    
+    private let size: CGFloat = 100.0
+    
+    var body: some View {
+        Image(systemName: "person.circle.fill")
+            .resizable()
+            .frame(width: size, height: size)
+            .padding(20)
+            .foregroundColor(.secondary)
+    }
+}
+
+#Preview {
+    DummyLoginImage()
 }
 
 struct PlusImageView: View {

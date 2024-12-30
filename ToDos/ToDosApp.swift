@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseAuth
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -23,7 +24,26 @@ struct ToDosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeScreen()
+            ContentView()
+                .environmentObject(AuthViewModel())
         }
     }
+}
+
+struct ContentView: View {
+    
+    @EnvironmentObject var authViewModel: AuthViewModel
+    
+    var body: some View {
+        if let user = authViewModel.user {
+            HomeScreen(user: user)
+        } else {
+            LoginScreen()
+        }
+    }
+}
+
+#Preview {
+    ContentView()
+        .environmentObject(AuthViewModel())
 }
