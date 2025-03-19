@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyBISUCPPMTtNb-YzCWApd4akpjOE0yS9FA</string>
+	<string>AIzaSyCZ1yhZdq3TUWERzKLYnUbhKY3tBEstf24</string>
 	<key>GCM_SENDER_ID</key>
-	<string>94929572962</string>
+	<string>666458522393</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>in.balaganesh.ToDos</string>
+	<string>in.juspay.ToDos</string>
 	<key>PROJECT_ID</key>
-	<string>test-project-a9f8a</string>
+	<string>todos-ios</string>
 	<key>STORAGE_BUCKET</key>
-	<string>test-project-a9f8a.firebasestorage.app</string>
+	<string>todos-ios.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:94929572962:ios:b6ca00d88328e4a47a2d3b</string>
+	<string>1:666458522393:ios:64c29d6ca742fb0446fb88</string>
 </dict>
 </plist>
