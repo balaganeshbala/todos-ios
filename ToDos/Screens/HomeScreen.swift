@@ -53,7 +53,7 @@ struct HomeScreen: View {
                     //MARK: List View
                     if (self.itemsViewModel.isLoading) {
                         LoaderView()
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else if (self.itemsViewModel.todoItems.isEmpty) {
                         EmptyListView()
                     } else {

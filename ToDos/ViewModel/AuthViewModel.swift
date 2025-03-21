@@ -50,6 +50,7 @@ class AuthViewModel: ObservableObject {
                 self.loginError = nil
             } else {
                 self.loginError = TextConstants.EMAIL_NOT_VERIFIED
+                try await self.sendVerificationEmail(user: currentUser)
             }
         } catch {
             debugPrint("Login error: \(error.localizedDescription)")
