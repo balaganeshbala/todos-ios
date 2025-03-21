@@ -29,7 +29,7 @@ struct RegistrationScreen: View {
                 VStack(spacing: 20) {
                     DummyLoginImage()
                     
-                    TextField("Name", text: $name)
+                    TextField(TextConstants.NAME, text: $name)
                         .textFieldStyle()
                         .autocorrectionDisabled()
                         .autocapitalization(.words)
@@ -38,7 +38,7 @@ struct RegistrationScreen: View {
                             nameFocused = true
                         }
                     
-                    TextField("Email", text: $email)
+                    TextField(TextConstants.EMAIL, text: $email)
                         .textFieldStyle()
                         .autocorrectionDisabled()
                         .keyboardType(.emailAddress)
@@ -48,14 +48,14 @@ struct RegistrationScreen: View {
                             emailFocused = true
                         }
                     
-                    SecureField("Password", text: $password)
+                    SecureField(TextConstants.PASSWORD, text: $password)
                         .textFieldStyle()
                         .focused($passwordFocused)
                         .onTapGesture {
                             passwordFocused = true
                         }
                     
-                    SecureField("Confirm Password", text: $confirmPassword)
+                    SecureField(TextConstants.CONFIRM_PASSWORD, text: $confirmPassword)
                         .textFieldStyle()
                         .focused($confirmPasswordFocused)
                         .onTapGesture {
@@ -77,7 +77,7 @@ struct RegistrationScreen: View {
                             await self.authViewModel.signUp(withName: name, email: email, password: password)
                         }
                     }, label: {
-                        Text("Sign Up")
+                        Text(TextConstants.SIGN_UP)
                             .primaryButton()
                     })
                     .disabled(!isValid())
@@ -96,9 +96,8 @@ struct RegistrationScreen: View {
                 
                 if (authViewModel.isSignUpLoading) {
                     VStack {
-                        LoaderView(text: "Please wait...")
+                        LoaderView(text: authViewModel.loaderText)
                             .background(Color("ThemeColor"))
-                            .frame(width: 150, height: 150)
                             .cornerRadius(10)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

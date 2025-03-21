@@ -88,5 +88,5 @@ struct ProfileScreen: View {
 }
 
 #Preview {
-    ProfileScreen(user: User(id: "12345", name: "Sharmila Gomathi", email: "sharmila.mathisankar@gmail.com"))
+    ProfileScreen(user: User(id: "12345", name: "Sharmila Gomathi", email: "sharmila.test@gmail.com"))
 }

@@ -13,7 +13,6 @@ struct LoaderView: View {
     
     var body: some View {
         VStack(spacing: 25) {
-            Spacer()
             ProgressView()
                 .scaleEffect(1.5)
             if let text = text {
@@ -21,17 +20,15 @@ struct LoaderView: View {
                     .font(getFont(weight: .medium, size: UIFont.labelFontSize))
                     .foregroundColor(.gray)
             }
-            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(25)
     }
 }
 
 #Preview(body: {
     VStack {
-        LoaderView(text: "Please wait...")
+        LoaderView(text: TextConstants.PLEASE_WAIT)
             .background(Color("ThemeColor"))
-            .frame(width: 150, height: 150)
             .cornerRadius(10)
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)

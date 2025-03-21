@@ -5,7 +5,7 @@
 //  Created by Balaganesh on 26/12/24.
 //
 
-import FirebaseAuth
+@preconcurrency import FirebaseAuth
 
 @MainActor
 class AuthViewModel: ObservableObject {
@@ -14,19 +14,27 @@ class AuthViewModel: ObservableObject {
     @Published var isLogInLoading: Bool = false
     
     @Published var signUpError: String? = nil
-    @Published var isSignUpLoading: Bool = false
+    @Published var isSignUpLoading: Bool = false {
+        didSet {
+            loaderText = TextConstants.PLEASE_WAIT
+        }
+    }
+    
+    @Published var loaderText: String = TextConstants.PLEASE_WAIT
     
     @Published var user: User? = nil
     
     init() {
-        setCurrentUserInfo()
+        if let currentUser = Auth.auth().currentUser {
+            setCurrentUserInfo(user: currentUser)
+        }
     }
     
-    func setCurrentUserInfo() {
-        if let currentUser = Auth.auth().currentUser,
-           let name = currentUser.displayName,
-           let email = currentUser.email {
-            self.user = User(id: currentUser.uid, name: name, email: email)
+    func setCurrentUserInfo(user: FirebaseAuth.User) {
+        if user.isEmailVerified,
+           let name = user.displayName,
+           let email = user.email {
+            self.user = User(id: user.uid, name: name, email: email)
         } else {
             self.user = nil
         }
@@ -35,12 +43,17 @@ class AuthViewModel: ObservableObject {
     func logIn(withEmail email: String, password: String) async {
         self.isLogInLoading = true
         do {
-            let _ = try await Auth.auth().signIn(withEmail: email, password: password)
-            setCurrentUserInfo()
-            self.loginError = nil
+            let authResult = try await Auth.auth().signIn(withEmail: email, password: password)
+            let currentUser = authResult.user
+            if currentUser.isEmailVerified {
+                setCurrentUserInfo(user: currentUser)
+                self.loginError = nil
+            } else {
+                self.loginError = TextConstants.EMAIL_NOT_VERIFIED
+            }
         } catch {
             debugPrint("Login error: \(error.localizedDescription)")
-            self.loginError = "Invalid Credentials!"
+            self.loginError = TextConstants.INVALID_CREDENTIALS
         }
         isLogInLoading = false
     }
@@ -51,17 +64,64 @@ class AuthViewModel: ObservableObject {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             let changeRequest = result.user.createProfileChangeRequest()
             changeRequest.displayName = name
-            let _ = try await changeRequest.commitChanges()
-            setCurrentUserInfo()
-            self.signUpError = nil
+            try await changeRequest.commitChanges()
+            guard let user = Auth.auth().currentUser else {
+                return
+            }
+            try await sendVerificationEmail(user: user)
+            self.loaderText = TextConstants.VERIFY_YOUR_EMAIL
+            let isVerified = await checkEmailVerification(user: user)
+            if isVerified {
+                setCurrentUserInfo(user: user)
+                self.signUpError = nil
+            } else {
+                self.signUpError = TextConstants.EMAIL_NOT_VERIFIED
+            }
         } catch {
-            self.signUpError = "Error in Registration!"
+            self.signUpError = TextConstants.REGISTRATION_ERROR
         }
         self.isSignUpLoading = false
     }
     
+    func sendVerificationEmail(user: FirebaseAuth.User) async throws {
+        if !user.isEmailVerified {
+            try await user.sendEmailVerification()
+        }
+    }
+    
+    func checkEmailVerification(user: FirebaseAuth.User) async -> Bool {
+        return await withCheckedContinuation { continuation in
+            let timeout: TimeInterval = 2 * 60 // 2 minutes
+            let startTime = Date()
+            
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { timer in
+                user.reload { error in
+                    if let error = error {
+                        debugPrint("Error reloading user: \(error.localizedDescription)")
+                        timer.invalidate() // Stop timer on error
+                        continuation.resume(returning: false)
+                        return
+                    }
+
+                    if user.isEmailVerified {
+                        debugPrint("✅ Email verified!")
+                        timer.invalidate() // Stop checking
+                        continuation.resume(returning: true)
+                        return
+                    }
+
+                    if Date().timeIntervalSince(startTime) >= timeout {
+                        debugPrint("❌ Timeout: Email not verified.")
+                        timer.invalidate() // Stop checking after timeout
+                        continuation.resume(returning: false)
+                    }
+                }
+            }
+        }
+    }
+    
     func signOut() {
         try? Auth.auth().signOut()
-        setCurrentUserInfo()
+        self.user = nil
     }
 }

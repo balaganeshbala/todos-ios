@@ -24,7 +24,7 @@ struct LoginScreen: View {
                 VStack(spacing: 20) {
                     DummyLoginImage()
                     
-                    TextField("Email", text: $email)
+                    TextField(TextConstants.EMAIL, text: $email)
                         .textFieldStyle()
                         .autocorrectionDisabled()
                         .keyboardType(.emailAddress)
@@ -34,7 +34,7 @@ struct LoginScreen: View {
                             emailFocused = true
                         }
                     
-                    SecureField("Password", text: $password)
+                    SecureField(TextConstants.PASSWORD, text: $password)
                         .textFieldStyle()
                         .focused($passwordFocused)
                         .onTapGesture {
@@ -48,7 +48,7 @@ struct LoginScreen: View {
                             await self.authViewModel.logIn(withEmail: email, password: password)
                         }
                     }, label: {
-                        Text("Log In")
+                        Text(TextConstants.LOG_IN)
                             .primaryButton()
                     })
                     .disabled(!isValid())
@@ -77,9 +77,8 @@ struct LoginScreen: View {
                 
                 if (authViewModel.isLogInLoading) {
                     VStack {
-                        LoaderView(text: "Please wait...")
+                        LoaderView(text: TextConstants.PLEASE_WAIT)
                             .background(Color("ThemeColor"))
-                            .frame(width: 150, height: 150)
                             .cornerRadius(10)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
