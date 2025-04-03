@@ -15,6 +15,7 @@ struct ProfileScreen: View {
         user.name.first.map { String($0).uppercased() } ?? "?"
     }
     
+    @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var authViewModel: AuthViewModel
     @State private var showLogoutConfirmation = false
     
@@ -55,6 +56,9 @@ struct ProfileScreen: View {
                 }
                 
                 Section {
+                    
+                    Toggle("Dark Theme", isOn: $themeManager.isDarkTheme)
+                    
                     Button {
                         
                     } label: {

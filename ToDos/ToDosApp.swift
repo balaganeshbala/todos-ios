@@ -22,10 +22,14 @@ struct ToDosApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    @StateObject private var themeManager = ThemeManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(AuthViewModel())
+                .environmentObject(themeManager)
+                .preferredColorScheme(themeManager.isDarkTheme ? .dark : .light)
         }
     }
 }

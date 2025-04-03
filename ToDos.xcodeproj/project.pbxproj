@@ -18,6 +18,7 @@
 		DC5D014B2949C2710017C67A /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01472949C2710017C67A /* CustomViews.swift */; };
 		DC5D014D2949C2710017C67A /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5D01492949C2710017C67A /* ListView.swift */; };
 		DC6156942D8D37D3004CC67D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6156932D8D37D3004CC67D /* Constants.swift */; };
+		DC61569A2D8D7D51004CC67D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6156992D8D7D51004CC67D /* ThemeManager.swift */; };
 		DC7267422D1EA50300A2945A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7267412D1EA4FD00A2945A /* Helper.swift */; };
 		DC7267452D1FF0D400A2945A /* ConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7267442D1FF0D400A2945A /* ConfirmationAlert.swift */; };
 		DC7DE6DD2D1ACAE2009369B4 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7DE6DC2D1ACAE2009369B4 /* LoaderView.swift */; };
@@ -47,6 +48,7 @@
 		DC5D01472949C2710017C67A /* CustomViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		DC5D01492949C2710017C67A /* ListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		DC6156932D8D37D3004CC67D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DC6156992D8D7D51004CC67D /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		DC7267412D1EA4FD00A2945A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		DC7267442D1FF0D400A2945A /* ConfirmationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationAlert.swift; sourceTree = "<group>"; };
 		DC7DE6DC2D1ACAE2009369B4 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		DC5D013B2949BFB70017C67A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DC6156992D8D7D51004CC67D /* ThemeManager.swift */,
 				DC7DE6E22D1D4324009369B4 /* AuthViewModel.swift */,
 				DC5D013C2949BFB70017C67A /* ItemsViewModel.swift */,
 			);
@@ -280,6 +283,7 @@
 				DC6156942D8D37D3004CC67D /* Constants.swift in Sources */,
 				DC5D014B2949C2710017C67A /* CustomViews.swift in Sources */,
 				DC7DE74F2D1E8105009369B4 /* RegistrationScreen.swift in Sources */,
+				DC61569A2D8D7D51004CC67D /* ThemeManager.swift in Sources */,
 				DC7DE7532D1E89E3009369B4 /* ProfileScreen.swift in Sources */,
 				DC5D01432949BFB70017C67A /* ItemsViewModel.swift in Sources */,
 				DC29ED672935CFE900EBB921 /* ToDosApp.swift in Sources */,
