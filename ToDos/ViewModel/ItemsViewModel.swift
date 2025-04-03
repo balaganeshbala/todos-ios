@@ -11,6 +11,7 @@ import FirebaseFirestore
 @MainActor
 class ItemsViewModel: ObservableObject {
     
+    @Published var showConfetti = false
     @Published var todoItems: [TodoItem] = []
     @Published var isLoading = false
     
@@ -37,6 +38,9 @@ class ItemsViewModel: ObservableObject {
         let newItem = TodoItem(id: item.id, orderIndex: item.orderIndex, title: item.title, at: item.at, isCompleted: !item.isCompleted)
         todoItems[itemIndex] = newItem
         Task {
+            if newItem.isCompleted {
+                showConfetti.toggle()
+            }
             await saveToDoToFirestore(todo: newItem)
         }
     }
@@ -74,6 +78,34 @@ class ItemsViewModel: ObservableObject {
                 saveTodoListToFirestore()
             }
         }
+    }
+
+    func reorderItemsAndUpdateFirebase() {
+        // Create a copy of the current order
+        let originalOrder = todoItems.map { $0.id }
+        
+        // Sort the items: uncompleted first, completed last
+        todoItems.sort { !$0.isCompleted && $1.isCompleted }
+        
+        // Check if the order has changed
+        let newOrder = todoItems.map { $0.id }
+        guard originalOrder != newOrder else {
+            // If the order hasn't changed, skip Firebase updates
+            return
+        }
+        
+        // Update the orderIndex for each item
+        for (index, item) in todoItems.enumerated() {
+            todoItems[index] = TodoItem(
+                id: item.id,
+                orderIndex: index,
+                title: item.title,
+                at: item.at,
+                isCompleted: item.isCompleted
+            )
+        }
+        
+        saveTodoListToFirestore()
     }
     
     func moveItem(itemIndex: IndexSet, offset: Int) {

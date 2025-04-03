@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC2150F72D9E54BC0042ADFE /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = DC2150F62D9E54BC0042ADFE /* ConfettiSwiftUI */; };
 		DC29ED672935CFE900EBB921 /* ToDosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29ED662935CFE900EBB921 /* ToDosApp.swift */; };
 		DC29ED6B2935CFEB00EBB921 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC29ED6A2935CFEB00EBB921 /* Assets.xcassets */; };
 		DC29ED6E2935CFEB00EBB921 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC29ED6D2935CFEB00EBB921 /* Preview Assets.xcassets */; };
@@ -74,6 +75,7 @@
 			files = (
 				DC55347F2D19603E006C73E1 /* FirebaseFirestore in Frameworks */,
 				DC7DE74D2D1E7746009369B4 /* FirebaseAuth in Frameworks */,
+				DC2150F72D9E54BC0042ADFE /* ConfettiSwiftUI in Frameworks */,
 				DC5534822D1960AE006C73E1 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +242,7 @@
 			mainGroup = DC29ED5A2935CFE900EBB921;
 			packageReferences = (
 				DC5534802D1960AE006C73E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				DC2150F52D9E54BB0042ADFE /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = DC29ED642935CFE900EBB921 /* Products */;
 			projectDirPath = "";
@@ -498,6 +501,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DC2150F52D9E54BB0042ADFE /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
 		DC55347D2D19603E006C73E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -517,6 +528,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DC2150F62D9E54BC0042ADFE /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DC2150F52D9E54BB0042ADFE /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
 		DC55347E2D19603E006C73E1 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DC55347D2D19603E006C73E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

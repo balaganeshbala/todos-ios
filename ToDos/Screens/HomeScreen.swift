@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 struct HomeScreen: View {
     
@@ -67,6 +68,7 @@ struct HomeScreen: View {
                                  showUpdateItemView: $showUpdateItemView)
                     }
                 }
+                .confettiCannon(trigger: $itemsViewModel.showConfetti, num: 80, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
                 
                 
                 //MARK: Add Button
